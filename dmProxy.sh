@@ -38,19 +38,17 @@ cat >in.$$ || { echo Cannot save mail to file; exit $EX_TEMPFAIL; }
 
 if grep -q link_url in.$$; then #Just to make sure we dont connect to the DB unless the mail has the link_url word
 
-#Capturing th eFor  email id from the mail
+#Capturing the For email id from the mail
 e_id=`grep "for <" in.$$  | grep -Po "(?<=\<)[^']*(?=\>)"`
 echo $e_id
 
 #Fetching the id from user table and storing in u_id
-#u_id=`PGPASSWORD=Specifies! psql -t -h $dbHost -d $dbName -U $dbUser << EOF
 u_id=`psql -t -h $dbHost -d $dbName -U $dbUser << EOF
 select id from users where email = '$e_id' LIMIT 1;
 EOF`
 
 
 #Fetching the Value from the user_custom_fields
-#Value=`PGPASSWORD=Specifies! psql -t -h $dbHost -d $dbName -U $dbUser << EOF
 Value=`psql -t -h $dbHost -d $dbName -U $dbUser << EOF
 select value from user_custom_fields where id = '$u_id' AND name = 'subdomain'; 
 EOF` 
