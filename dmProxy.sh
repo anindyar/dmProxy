@@ -17,11 +17,11 @@
 INSPECT_DIR=/var/spool/filter
 SENDMAIL=/usr/sbin/sendmail
 HTTP="https" #Change it with what suites you. HTTP or HTTPS
-DOMAIN="monitoringclient.com"  #Your domain goes here 
-export PGPASSWORD="Specifies!" #Put your Postgres Password Here
-dbHost="172.17.0.37" #Put your PostgreSQL Hostname or IP here
-dbName="discourse" #And DB Name Goes here
-dbUser="anindya" #Finally the db user
+DOMAIN=""  #Your domain goes here 
+export PGPASSWORD="" #Put your Postgres Password Here
+dbHost="" #Put your PostgreSQL Hostname or IP here
+dbName="" #And DB Name Goes here
+dbUser="" #Finally the db user
 
 # Exit codes from <sysexits.h> 
 EX_TEMPFAIL=75 
@@ -36,7 +36,7 @@ $EX_TEMPFAIL; }
 
 cat >in.$$ || { echo Cannot save mail to file; exit $EX_TEMPFAIL; } 
 
-if grep -q link_url in.$$; then #Just to make sure we dont connect to the DB unless the mail as the link_url 
+if grep -q link_url in.$$; then #Just to make sure we dont connect to the DB unless the mail has the link_url word
 
 #Capturing th eFor  email id from the mail
 e_id=`grep "for <" in.$$  | grep -Po "(?<=\<)[^']*(?=\>)"`
@@ -47,7 +47,7 @@ echo $e_id
 u_id=`psql -t -h $dbHost -d $dbName -U $dbUser << EOF
 select id from users where email = '$e_id' LIMIT 1;
 EOF`
-echo $u_id
+
 
 #Fetching the Value from the user_custom_fields
 #Value=`PGPASSWORD=Specifies! psql -t -h $dbHost -d $dbName -U $dbUser << EOF
