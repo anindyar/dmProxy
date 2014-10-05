@@ -16,9 +16,13 @@ Any Linux distribution with bash and Postfix already installed and running
 Installation
 ============
 
-1. Download dmProxy or simply do a git clone of this folder. I recommend to do it in a folder like /opt/dmProxy. But you are welcome to use your imagination. 
+Step 1. 
+=======
+Download dmProxy or simply do a git clone of this folder. I recommend to do it in a folder like /opt/dmProxy. But you are welcome to use your imagination. 
 
-2. open the dmProxy file in your favorit text editor and localize the first block with your system settings. Everything is commented pretty well. Though I am bad with spellings so pardon my typos ;-) ! here is a quick list of what all you would need to replace
+Step 2.
+=======
+open the dmProxy file in your favorit text editor and localize the first block with your system settings. Everything is commented pretty well. Though I am bad with spellings so pardon my typos ;-) ! here is a quick list of what all you would need to replace
 
 Line 17: INSPECT_DIR=/var/spool/filter -- This is the folder where the mails will be captured and worked on. we will create it in the next step
 
@@ -38,19 +42,29 @@ Line 24: dbUser="" #Finally the db user. Remember the plain text password in lin
 
 And you are pretty much done with the script
 
-3. Create a folder where your mails will be kept while parsing. This folder needs to be secure enough so we will create a dedicated user for running our proxy and accessing this folder in next step
+Step 3.
+=======
+Create a folder where your mails will be kept while parsing. This folder needs to be secure enough so we will create a dedicated user for running our proxy and accessing this folder in next step
 -#mkdir /var/spool/filter
 
-4. Create a user called filter like this
+Step 4.
+=======
+Create a user called filter like this
 -#useradd -r -c "Postfix Filters" -d /var/spool/filter filter
 
-5. Now make sure the folder /var/spool/filter is owned by the filter user
+Step 5.
+=======
+Now make sure the folder /var/spool/filter is owned by the filter user
 -#chown filter:filter /var/spool/filter
 
-6. and tighten the security a bit
+Step 6.
+=======
+and tighten the security a bit
 -#chmod 750 /var/spool/filter
 
-7. Now open postfix's master.cf with your favorit text editor and add a line just below
+Step 7.
+=======
+Now open postfix's master.cf with your favorit text editor and add a line just below
 smtp      inet  n       -       y       -       -       smtpd
     -o content_filter=dmProxy:dummy   #This is the line to be added
 
@@ -58,12 +72,16 @@ NOTE: if you are using smtps then you have to append the same line below smtps a
 smtps      inet  n       -       y       -       -       smtpd
     -o content_filter=dmProxy:dummy
     
-8. And now you have to define the dmProxy content filter that you have just created. go to the end of master.cf and append the following 2 lines
+Step 8.
+=======
+And now you have to define the dmProxy content filter that you have just created. go to the end of master.cf and append the following 2 lines
 
 dmProxy     unix  -       n       n       -       -     pipe
   flags=Rq user=filter argv=/opt/dmProxy/dmProxy -f ${sender} -- ${recipient}
   
-9. And finally restart postfix
+Step 9.
+=======
+And finally restart postfix
 -#/etc/init.d/postfix restart
 
 and you are done !! wasn't it easy ;-) ?
