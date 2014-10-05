@@ -27,7 +27,7 @@ open the dmProxy file in your favorit text editor and localize the first block w
 
 Line 17: `INSPECT_DIR=/var/spool/filter` -- This is the folder where the mails will be captured and worked on. we will create it in the next step
 
-Line 18: `SENDMAIL=/usr/sbin/sendmail`  -- Your sendmail location. do a whereis sendmail to find this
+Line 18: `SENDMAIL=/usr/sbin/sendmail`  -- Your sendmail location. do a `whereis sendmail` to find this
 
 Line 19: `HTTP="https"` -- Change it with what suites you. HTTP or HTTPS. this will be appended at the beginning of the link
 
