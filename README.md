@@ -19,7 +19,7 @@ Installation
 
 Step 1. 
 -------
-Download dmProxy or simply do a git clone of this folder. I recommend to do it in a folder like /opt/dmProxy. But you are welcome to use your imagination. 
+Download `dmProxy.sh` or simply do a git clone of this folder. I recommend to do it in a folder like /opt/dmProxy. But you are welcome to use your imagination. 
 
 Step 2.
 -------
@@ -37,9 +37,9 @@ Line 21: `export PGPASSWORD=""` -- Put your Postgres Password Here. yes plain te
 
 Line 22: `dbHost=""` -- Put your PostgreSQL Hostname or IP here
 
-Line 23: `dbName=""` #And DB Name Goes here. most likely it will be discourse.
+Line 23: `dbName=""` -- And DB Name Goes here. most likely it will be discourse.
 
-Line 24: `dbUser=""` #Finally the db user. Remember the plain text password in line 21? create a readonly DB user and use it for this script.
+Line 24: `dbUser=""` -- Finally the db user. Remember the plain text password in line 21? create a readonly DB user and use it for this script.
 
 And you are pretty much done with the script
 
