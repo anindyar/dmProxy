@@ -6,8 +6,8 @@
 #developed for Discourse [http://discoversd.com/] to replace link_url text with#
 #a subdomain value fetched from a DB. You are most welcome to take and break   #
 #it for your needs !!                                                          #
-# 																		Cheers,#
-#																	Anindya Roy#
+# 																		                                                    Cheers,#
+#                                                  																	Anindya Roy#
 #                                                                  i@anindya.me#
 ################################################################################
 
