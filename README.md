@@ -2,19 +2,11 @@ dmProxy
 =======
 
 Discourse Mail Proxy
+This small script is inspired by AlterMIME. but does a very specific task Unlike just appending a disclaimer text in a mail, it looks for a specific set of words in a mail and replaces that with a link. This was specifically developed for Discourse [http://discoversd.com/] to replace link_url text with a subdomain value fetched from a DB. You are most welcome to take and break it for your needs !!
+ 																		                                  Cheers,
+																	                                   Anindya Roy
+                                                                                                      i@anindya.me
 
-################################################################################
-#Discourse Mail Proxy v0.1                                                     #
-#This small script is inspired by AlterMIME. but does a very specific task     #
-#Unlike just appending a disclaimer text in a mail, it looks for a specific set#
-#of words in a mail and replaces that with a link. This was specifically       #
-#developed for Discourse [http://discoversd.com/] to replace link_url text with#
-#a subdomain value fetched from a DB. You are most welcome to take and break   #
-#it for your needs !!                                                          #
-# 																		                                  Cheers,#
-#																	                                  Anindya Roy#
-#                                                                  i@anindya.me#
-################################################################################
 
 Pre-Requisites
 =============
@@ -47,16 +39,16 @@ Line 24: dbUser="" #Finally the db user. Remember the plain text password in lin
 And you are pretty much done with the script
 
 3. Create a folder where your mails will be kept while parsing. This folder needs to be secure enough so we will create a dedicated user for running our proxy and accessing this folder in next step
-#mkdir /var/spool/filter
+-#mkdir /var/spool/filter
 
 4. Create a user called filter like this
-#useradd -r -c "Postfix Filters" -d /var/spool/filter filter
+-#useradd -r -c "Postfix Filters" -d /var/spool/filter filter
 
 5. Now make sure the folder /var/spool/filter is owned by the filter user
-#chown filter:filter /var/spool/filter
+-#chown filter:filter /var/spool/filter
 
 6. and tighten the security a bit
-#chmod 750 /var/spool/filter
+-#chmod 750 /var/spool/filter
 
 7. Now open postfix's master.cf with your favorit text editor and add a line just below
 smtp      inet  n       -       y       -       -       smtpd
@@ -72,6 +64,6 @@ dmProxy     unix  -       n       n       -       -     pipe
   flags=Rq user=filter argv=/opt/dmProxy/dmProxy -f ${sender} -- ${recipient}
   
 9. And finally restart postfix
-#/etc/init.d/postfix restart
+-#/etc/init.d/postfix restart
 
 and you are done !! wasn't it easy ;-) ?
