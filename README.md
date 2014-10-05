@@ -3,7 +3,7 @@ dmProxy
 
 Discourse Mail Proxy
 --------------------
-This small script is inspired by AlterMIME. but does a very specific task Unlike just appending a disclaimer text in a mail, it looks for a specific set of words in a mail and replaces that with a link. This was specifically developed for Discourse [http://discoversd.com/] to replace link_url text with a subdomain value fetched from a DB. You are most welcome to take and break it for your needs !!
+This small script is inspired by AlterMIME. but does a very specific task Unlike just appending a disclaimer text in a mail, it looks for a specific set of words in a mail and replaces that with a link. This was specifically developed for [Discourse](http://discourse.org) to replace `link_url` or `show_url` with a URL based on a subdomain value fetched from custom fields in the discourse database. You are most welcome to take and break it for your needs !!
  																		                                  Cheers,
 																	                                   Anindya Roy
                                                                                                       i@anindya.me
