@@ -66,6 +66,13 @@ Step 6.
 and tighten the security a bit
 
 `#chmod 750 /var/spool/filter`
+Also, as the user is now created. lets give our shell script rights to be run by filter group
+
+`#chown root.filter /opt/dmProxy/ -R`
+
+and make it executable
+
+`#chmod 755 /opt/dmProxy/dmProxy.sh`
 
 Step 7.
 -------
@@ -87,7 +94,7 @@ And now you have to define the dmProxy content filter that you have just created
 
 `dmProxy     unix  -       n       n       -       -     pipe`
 
-`  flags=Rq user=filter argv=/opt/dmProxy/dmProxy -f ${sender} -- ${recipient}`
+`  flags=Rq user=filter argv=/opt/dmProxy/dmProxy.sh -f ${sender} -- ${recipient}`
   
 Step 9.
 -------
