@@ -71,11 +71,13 @@ Step 7.
 Now open postfix's master.cf with your favorit text editor and add a line just below
 
 `smtp      inet  n       -       y       -       -       smtpd`
+
 `    -o content_filter=dmProxy:dummy   #This is the line to be added`
 
 NOTE: if you are using smtps then you have to append the same line below smtps as well. This should look like
 
 `smtps      inet  n       -       y       -       -       smtpd`
+
 `    -o content_filter=dmProxy:dummy`
     
 Step 8.
@@ -83,6 +85,7 @@ Step 8.
 And now you have to define the dmProxy content filter that you have just created. go to the end of master.cf and append the following 2 lines
 
 `dmProxy     unix  -       n       n       -       -     pipe`
+
 `  flags=Rq user=filter argv=/opt/dmProxy/dmProxy -f ${sender} -- ${recipient}`
   
 Step 9.
