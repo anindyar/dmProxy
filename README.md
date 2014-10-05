@@ -45,30 +45,36 @@ And you are pretty much done with the script
 Step 3.
 =======
 Create a folder where your mails will be kept while parsing. This folder needs to be secure enough so we will create a dedicated user for running our proxy and accessing this folder in next step
+
 -#mkdir /var/spool/filter
 
 Step 4.
 =======
 Create a user called filter like this
--#useradd -r -c "Postfix Filters" -d /var/spool/filter filter
+
+$sudo useradd -r -c "Postfix Filters" -d /var/spool/filter filter
 
 Step 5.
 =======
 Now make sure the folder /var/spool/filter is owned by the filter user
--#chown filter:filter /var/spool/filter
+
+$sudo chown filter:filter /var/spool/filter
 
 Step 6.
 =======
 and tighten the security a bit
--#chmod 750 /var/spool/filter
+
+$sudo chmod 750 /var/spool/filter
 
 Step 7.
 =======
 Now open postfix's master.cf with your favorit text editor and add a line just below
+
 smtp      inet  n       -       y       -       -       smtpd
     -o content_filter=dmProxy:dummy   #This is the line to be added
 
 NOTE: if you are using smtps then you have to append the same line below smtps as well. This should look like
+
 smtps      inet  n       -       y       -       -       smtpd
     -o content_filter=dmProxy:dummy
     
@@ -82,6 +88,7 @@ dmProxy     unix  -       n       n       -       -     pipe
 Step 9.
 =======
 And finally restart postfix
--#/etc/init.d/postfix restart
+
+$sudo /etc/init.d/postfix restart
 
 and you are done !! wasn't it easy ;-) ?
