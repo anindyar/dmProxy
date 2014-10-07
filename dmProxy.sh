@@ -43,14 +43,14 @@ e_id=`grep "for <" in.$$  | grep -Po "(?<=\<)[^']*(?=\>)"`
 echo $e_id
 
 #Fetching the id from user table and storing in u_id
-u_id=`psql -t -h $dbHost -d $dbName -U $dbUser --variable emailAddress=$e_id << EOF
-select id from users where email = emailAddress LIMIT 1;
+u_id=`psql -t -h $dbHost -d $dbName -U $dbUser --variable emailAddress=\'$e_id\' << EOF
+select id from users where email = :emailAddress LIMIT 1;
 EOF`
 
 
 #Fetching the Value from the user_custom_fields
 Value=`psql -t -h $dbHost -d $dbName -U $dbUser --variable eid=$u_id << EOF
-select value from user_custom_fields where id = eid AND name = 'subdomain'; 
+select value from user_custom_fields where id = :eid AND name = 'subdomain'; 
 EOF` 
 echo $Value
 if [ -n "$Value" ]; then
