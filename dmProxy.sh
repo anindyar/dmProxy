@@ -43,8 +43,8 @@ e_id=`grep "for <" in.$$  | grep -Po "(?<=\<)[^']*(?=\>)"`
 echo $e_id
 
 #Fetching the id from user table and storing in u_id
-u_id=`psql -t -h $dbHost -d $dbName -U $dbUser << EOF
-select id from users where email = '$e_id' LIMIT 1;
+u_id=`psql -t -h $dbHost -d $dbName -U $dbUser --variable emailAddress=\'$e_id\' << EOF
+select id from users where email = :emailAddress LIMIT 1;
 EOF`
 
 
