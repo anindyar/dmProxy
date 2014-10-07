@@ -13,15 +13,7 @@
 
 
 #!/bin/sh 
-# Localize these. 
-INSPECT_DIR=/var/spool/filter
-SENDMAIL=/usr/sbin/sendmail
-HTTP="https" #Change it with what suites you. HTTP or HTTPS
-DOMAIN=""  #Your domain goes here 
-export PGPASSWORD="" #Put your Postgres Password Here
-dbHost="" #Put your PostgreSQL Hostname or IP here
-dbName="" #And DB Name Goes here
-dbUser="" #Finally the db user
+source /etc/dmProxy.conf
 
 # Exit codes from <sysexits.h> 
 EX_TEMPFAIL=75 
