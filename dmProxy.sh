@@ -49,8 +49,8 @@ EOF`
 
 
 #Fetching the Value from the user_custom_fields
-Value=`psql -t -h $dbHost -d $dbName -U $dbUser --variable eid=$u_id << EOF
-select value from user_custom_fields where id = :eid AND name = 'subdomain'; 
+Value=`psql -t -h $dbHost -d $dbName -U $dbUser << EOF
+select value from user_custom_fields where id = '$u_id' AND name = 'subdomain'; 
 EOF` 
 echo $Value
 if [ -n "$Value" ]; then
