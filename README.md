@@ -19,27 +19,27 @@ Installation
 
 Step 1. 
 -------
-Download `dmProxy.sh` or simply do a git clone of this folder. I recommend to do it in a folder like /opt/dmProxy. But you are welcome to use your imagination. 
+Download `dmProxy.sh` and `dmProxy.conf` or simply do a git clone of this folder. I recommend to do it in a folder like /opt/dmProxy. But you are welcome to use your imagination. then move `dmProxy.conf` to /etc/ 
 
 Step 2.
 -------
-open the dmProxy file in your favorit text editor and localize the first block with your system settings. Everything is commented pretty well. Though I am bad with spellings so pardon my typos ;-) ! here is a quick list of what all you would need to replace
+Now open the `/etc/dmProxy.conf` file in your favorit text editor and localize it  with your system settings. Everything is commented pretty well. Though I am bad with spellings so pardon my typos ;-) ! here is a quick list of what all you would need to replace
 
-Line 17: `INSPECT_DIR=/var/spool/filter` -- This is the folder where the mails will be captured and worked on. we will create it in the next step
+Line 3: `INSPECT_DIR=/var/spool/filter` -- This is the folder where the mails will be captured and worked on. we will create it in the next step
 
-Line 18: `SENDMAIL=/usr/sbin/sendmail`  -- Your sendmail location. do a `whereis sendmail` to find this
+Line 5: `SENDMAIL=/usr/sbin/sendmail`  -- Your sendmail location. do a `whereis sendmail` to find this
 
-Line 19: `HTTP="https"` -- Change it with what suites you. HTTP or HTTPS. this will be appended at the beginning of the link
+Line 7: `HTTP="https"` -- Change it with what suites you. HTTP or HTTPS. this will be appended at the beginning of the link
 
-Line 20: `DOMAIN="monitoringclient.com"`  -- Your domain goes here 
+Line 9: `DOMAIN="monitoringclient.com"`  -- Your domain goes here 
 
-Line 21: `export PGPASSWORD=""` -- Put your Postgres Password Here. yes plain text. bad idea. there are other ways to do this aswell. do some googling ;-)
+Line 11: `export PGPASSWORD=""` -- Put your Postgres Password Here. yes plain text. bad idea. there are other ways to do this aswell. do some googling ;-)
 
-Line 22: `dbHost=""` -- Put your PostgreSQL Hostname or IP here
+Line 13: `dbHost=""` -- Put your PostgreSQL Hostname or IP here
 
-Line 23: `dbName=""` -- And DB Name Goes here. most likely it will be discourse.
+Line 15: `dbName=""` -- And DB Name Goes here. most likely it will be discourse.
 
-Line 24: `dbUser=""` -- Finally the db user. Remember the plain text password in line 21? create a readonly DB user and use it for this script.
+Line 17: `dbUser=""` -- Finally the db user. Remember the plain text password in line 21? create a readonly DB user and use it for this script.
 
 And you are pretty much done with the script
 
